@@ -49,7 +49,7 @@ const toggle = document.getElementById('toggle');
 const body = document.body;
 const logo = document.getElementById('myLogo');
 
-
+// If you work then get pushed
 toggle.addEventListener('input', e => {
     const isChecked = e.target.checked;
 
