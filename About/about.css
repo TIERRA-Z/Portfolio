@@ -382,6 +382,7 @@ section .title::before{
 .content-box:hover{
     box-shadow: 0 0 15px #593F62;
     border: 3px solid  #363946;
+    background-color: #FED049;
 }
 
 .timeline-box{
@@ -401,7 +402,6 @@ section .title::before{
     font-weight: 700;
 }
 
-
 .content-box:before{
     position: absolute; /*The above content-box will be relative to the block above*/
     content: '';
@@ -416,13 +416,24 @@ section .title::before{
                                     /*DArk MODE*/
 
 body.dark-theme .navbar.sticky{
-    background-color: #363946;
+    background-color: #121212;
+}
 
-
+body.dark-theme .navbar .menu li a:hover{
+    color: #AD7E4B;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 body.dark-theme footer{
-    background-color: #363946;
+    background-color: #121212;
+    color: #AD7E4B;
+
+}
+
+body.dark-theme footer a{
+    color: #AD7E4B;
+
 }
 
 body.dark-theme .scroll-up-btn{
@@ -440,6 +451,55 @@ body.dark-theme .date{
     color: #AD7E4B;
 
 }
+
+body.dark-theme .timeline-box{
+    border-left: 5px solid  #AD7E4B; /*Color for Center Line*/
+}
+
+body.dark-theme .content-box:before{
+    background-color:  #AD7E4B; /*Circle in line*/
+   
+}
+
+body.dark-theme .title{
+    color:#AD7E4B;
+}
+
+body.dark-theme .about .title::before{
+    background: #AD7E4B;
+}
+body.dark-theme .about .about-content .right p{
+    color:#AD7E4B;
+
+}
+
+body.dark-theme .content-box:hover{
+    box-shadow: 0 0 15px #AD7E4B;
+    border: 3px solid  #282828;
+}
+
+body.dark-theme .content-box{
+    border: 3px solid  #282828;
+    background-color: #282828; /*Box Color*/
+
+}
+
+body.dark-theme .about .about-content .right a{
+    color: #FAF9F6;
+    background-color: #282828; /*DARK MODE SKILL CARDS TEXT COLOR*/
+    border: 2px solid #AD7E4B;
+
+}
+
+body.dark-theme .about .about-content .right .text{
+    color: #AD7E4B;
+}
+
+body.dark-theme hr{
+    border: 1px solid #AD7E4B;
+
+}
+
 
                                     /*END OF DARK MODE*/
 
@@ -508,7 +568,7 @@ section .title::before{
 }
 
 section .title{
-    color: black;
+    color: #282828;
     position: relative;
     text-align: center;
     font-size: 40px;
@@ -517,6 +577,12 @@ section .title{
     padding-bottom: 20px;
     font-family: 'Ubuntu', sans-serif;
 }
+
+hr{
+    border: 1px solid #282828;
+
+}
+
 /* footer section styling */
 
 footer{
@@ -561,7 +627,7 @@ footer{
         width: 100%;
         left: -100%;
         top: 0;
-        background: #363946;
+        background: #282828;
         text-align: center;
         padding-top: 80px;
         transition: all 0.3s ease;

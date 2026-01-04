@@ -37,12 +37,10 @@ section{
     padding: 0 80px;
     margin: auto;
 }
-.about, .resume, .projects, footer{
+.home .home-content, footer{
     font-family: 'Poppins', sans-serif;
 }
-.about .about-content,
-.resume .serv-content,
-.projects .projects-content,
+.home .home-content
 .contact .contact-content{
     display: flex;
     flex-wrap: wrap;
@@ -191,37 +189,31 @@ section .title::before{
   .home .max-width .row{
     margin-right: 0;
   }
-.home .home-content .text-1{
-    font-size: 27px;
-}
-.home .home-content .text-2{
-    font-size: 75px;
-    font-weight: 600;
-    margin-left: -3px;
-}
-.home .home-content .text-3{
-    font-size: 40px;
-    margin: 5px 0;
-}
-.home .home-content .text-3 span{
-    color: #FED049;
-    font-weight: 500;
-}
+
 .home .home-content a{
     display: inline-block;
-    background: crimson;
+    background: #593F62;
     color: #FAF9F6;
-    font-size: 25px;
-    padding: 12px 36px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 30px;
     margin-top: 20px;
-    font-weight: 400;
     border-radius: 6px;
-    border: 2px solid blue;
+    border: 2px solid #55185D;
     transition: all 0.3s ease;
 }
+
+.home .contact-form-layer i{
+    font-size: 20px;
+    color: #FAF9F6;
+    transition: color 0.3s ease;
+    
+}
 .home .home-content a:hover{
-    color: #FED049;
-    background: none;
+    color: #55185D;
+    background-color: #FED049;
+    font-style: italic;
+    text-decoration: underline;
 }
 
 .toggle input[type='checkbox'] {
@@ -273,26 +265,113 @@ section .title::before{
 
 }
 
+./* General form container */
+form {
+  width: 100%;
+  max-width: 500px;
+  margin: 5vh auto;
+  padding: 30px;
+  background-color: #FAF9F6;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(254, 208, 73, 0.4);
+  font-family: 'Segoe UI', sans-serif;
+  color: #282828;
+}
+
+/* Newsletter content area */
+.newsletter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input fields */
+.newsletter-container input[type="text"] {
+  padding: 12px 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-container input[type="text"]:focus {
+  border-color: #FED049;
+}
+
+/* Checkbox label */
+.newsletter-container label {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 15px;
+ 
+}
+
+/* Checkbox itself */
+.newsletter-container input[type="checkbox"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+/* Submit button */
+.container input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #593F62;
+  border: 2px solid #593F62;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #FAF9F6;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Submit Button while Hovered */
+.container input[type="submit"]:hover {
+  background-color: #FED049;
+  text-decoration: underline;
+  font-style: italic;
+  color: #593F62;
+}
 
 /*DArk MODE*/
 body.dark-theme {
     color: #AD7E4B;
+    background-color: #121212;
 }
 
 body.dark-theme .navbar.sticky{
-    background-color: #363946;
+    background-color: #121212;
 
 
 }
-.sub-title.body.dark-theme{
-        color: #AD7E4B;
 
+body.dark-theme .home{
+    background: #121212;
+}
 
+body.dark-theme footer{
+    background-color: #121212;
+    color: #AD7E4B;
+}
+
+body.dark-theme footer a{
+    color: #AD7E4B;
+}
+
+body.dark-theme .scroll-up-btn{
+    background-color: #AD7E4B;
 }
 
 /*Main Background in Dark Mode*/
 body.dark-theme .contact.contact{
-        background-color: #363946;
+        background-color: #121212;
+        color:#AD7E4B;
 
 }
 
@@ -302,21 +381,16 @@ body.dark-theme .contact .contact-content .row i {
     color: #AD7E4B;
 }
 
+/* Newsletter Form Dark Mode */
 
-
-div.contact-form-layer{
-  width: 600px;
-  border: 3px solid white;
-  border-radius: 5px;
-  padding: 50px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
-    min-height: 60vh;
+body.dark-theme .container input[type="submit"]:hover {
+    background-color: #121212;
+    color:#AD7E4B;
+    border-color:#AD7E4B;
 }
+
+
+
 
 /* contact section styling */
 .contact .title::after{
@@ -445,17 +519,36 @@ footer{
     font-style: italic;
 }
 
-@media (max-width: 1104px) {
-    .about .about-content .left img{
-        height: 350px;
-        width: 350px;
-    }
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .newsletter-container h2 {
+    font-size: 1.25rem;
+  }
+
+  .newsletter-container label {
+    font-size: 0.9rem;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .container input[type="submit"] {
+    font-size: 0.95rem;
+  }
 }
+
+
 @media (max-width: 991px) {
     .max-width{
         padding: 0 50px;
     }
 }
+
 @media (max-width: 947px){
     .menu-btn{
         display: block;
@@ -499,22 +592,7 @@ footer{
     .max-width{
         max-width: 930px;
     }
-    .about .about-content .column{
-        width: 100%;
-    }
-    .about .about-content .left{
-        display: flex;
-        justify-content: center;
-        margin: 0 auto 60px;
-    }
-    .about .about-content .right{
-        flex: 100%;
-    }
-    .resume .serv-content .card{
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
-    }
-    .projects .projects-content .column,
+   
     .contact .contact-content .column{
         width: 100%;
         margin-bottom: 35px;
@@ -533,9 +611,7 @@ footer{
     .home .home-content a{
         font-size: 20px;
     }
-    .resume .serv-content .card{
-        width: 100%;
-    }
+    
 }
 @media (max-width: 500px) {
     .home .home-content .text-2{

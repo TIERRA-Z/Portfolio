@@ -171,7 +171,15 @@ section .title::before{
     filter: brightness(90%);
 }
 
+img.myLogo{
+  margin-top: 50px;         /* moves the image down */
+  width: 100%;              /* responsive width */
+  max-width: 500px;         /* limits it on large screens */
+  height: auto;             /* maintain aspect ratio */
+  display: block;           /* remove extra inline space */
+  object-fit: cover;        /* optional: better cropping */
 
+}
 
 /* Home Section */
 .home{
@@ -188,7 +196,7 @@ section .title::before{
     width: 100%;
     display: flex;
   }
-  .home .max-width .row{
+.home .max-width .row{
     margin-right: 0;
   }
 .home .home-content .text-1{
@@ -207,22 +215,16 @@ section .title::before{
     color: #FED049;
     font-weight: 500;
 }
-.home .home-content a{
-    display: inline-block;
-    background: crimson;
-    color: #FAF9F6;
-    font-size: 25px;
-    padding: 12px 36px;
-    margin-top: 20px;
-    font-weight: 400;
-    border-radius: 6px;
-    border: 2px solid blue;
-    transition: all 0.3s ease;
-}
+
 .home .home-content a:hover{
     color: #FED049;
     background: none;
 }
+
+hr{
+    border: 1px solid #282828;
+}
+
 
 .toggle input[type='checkbox'] {
     display: none;
@@ -277,6 +279,11 @@ section .title::before{
                                             /*DARK MODE*/
 body.dark-theme{
     background-color: #121212;
+    color: #AD7E4B;
+}
+
+body.dark-theme .home{
+    background: #121212;
     color: #AD7E4B;
 }
 
@@ -337,6 +344,12 @@ body.dark-theme .resume .serv-content .card:hover i{
     color: #AD7E4B;
 }
 
+body.dark-theme .resume .serv-content .card:hover{
+    box-shadow: 0 0 15px #AD7E4B;
+
+}
+
+
 body.dark-theme .navbar .menu li a:hover{
     color: #AD7E4B;
     font-style: italic;
@@ -351,15 +364,67 @@ body.dark-theme section .title::before{
     background: #AD7E4B;
 }
 
+body.dark-theme .project-item {
+    flex: 1 1 400px;
+    max-width: 500px;
+    background: #282828;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
+/* Caption */
+body.dark-theme .project-item figcaption {
+    font-style: italic;
+    color: #AD7E4B
+}
+
+/* Project heading */
+body.dark-theme .project-item .text {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 15px 0 10px;
+    color: #AD7E4B;
+}
+
+/* Paragraph */
+body.dark-theme .project-item p {
+    text-align: justify;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #AD7E4B;
+}
+
+/* Button */
+body.dark-theme .project-item a {
+   color: #FAF9F6;
+    background-color: #282828; /*DARK MODE SKILL CARDS TEXT COLOR*/
+    border: 2px solid #AD7E4B;
+}
+
+body.dark-theme .project-item a:hover {
+    color: #FAF9F6;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+body.dark-theme hr{
+    border: 1px solid #AD7E4B;
+
+}
+
+body.dark-theme .about{
+    background-color: #121212;
+}
                                         /*END OF DARK MODE STYLING*/
 
                                     /* START OF ABOUT SECTION STYLING */
 
-.about.about.dark-theme{
-    background-color: #FAF9F6; /*bg color for about me*/
-}
 
+.about{
+    background-color: #FAF9F6;
+}
 .about .about-content .left{
     width: 45%;
 }
@@ -407,31 +472,26 @@ body.dark-theme section .title::before{
     text-decoration: underline;
 }
 
-.crown2 {
-    width: 30px;
-    height: 35px;
-    margin-left: 550px;
-    position: sticky;
-}
 
 /* SKILLS section styling */
 .resume{
-    color:#FAF9F6; /*Commision and Skills text*/
-    background: #7B6D8D;
+    color:#282828; /*Commision and Skills text*/
+    background: #FAF9F6;
 }
 .resume .title::before{
-    background: #FAF9F6;
+    background: #282828;
 }
 
 /*resume cards*/
 .resume .serv-content .card{
     width: calc(33% - 20px);
-    background: #593F62;
+    background: #FAF9F6;
     text-align: left;
     border-radius: 6px;
     padding: 50px 25px;
     cursor: default;
     transition: all 0.3s ease;
+    border: 2px solid #282828;
 }
 
 /*resume hoverover card*/
@@ -446,7 +506,7 @@ body.dark-theme section .title::before{
 }
 .resume .serv-content .card i{
     font-size: 50px;
-    color: #FED049;
+    color: #282828;
     transition: color 0.3s ease;
 }
 .resume .serv-content .card:hover i{
@@ -699,4 +759,14 @@ footer{
     flex-direction: column;
     align-items: center;
   }
+
+@media (max-width: 400px) {
+ 
+  .myLogo {
+    margin-top: 20px;
+    max-width: 80%;
+  }
+}
+
+  
 }

@@ -47,13 +47,24 @@ $(document).ready(function(){
 // Dark Mode toggle
 const toggle = document.getElementById('toggle');
 const body = document.body;
+const logo = document.getElementById('myLogo');
+
 
 toggle.addEventListener('input', e => {
     const isChecked = e.target.checked;
 
     if (isChecked) {
         body.classList.add('dark-theme');
+         logo.src = 'Crown-DarkMode-Edition.png';
+
     } else {
         body.classList.remove('dark-theme');
+              logo.src = 'About/crown-icon.png';
+
     }
 });
+
+
+ 
+
+  

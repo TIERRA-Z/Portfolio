@@ -49,7 +49,7 @@ toggle.addEventListener('input', e => {
     }
 });
 
-  const images = ['aboutmemainpic.jpg', 'esportsgroupphoto.jpg', 'awards.jpg'];
+  const images = ['aboutmemainpic.jpg', 'esportsgroupphoto.jpg', 'awards.jpg', 'SHPromiseClubPhoto.png'];
   const aboutSection = document.querySelector('.home');
   const dotsContainer = document.getElementById('dots-container');
    const prevBtn = document.getElementById('prev');

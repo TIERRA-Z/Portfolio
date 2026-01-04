@@ -57,14 +57,23 @@
 <section class="home" id="home">
 <div class="max-width">
     <div class="home-content">
-        <div class = "contact-form-layer">
-        <div class="contact-text">
-        </div>
-        </div> <!--CONTACT FORM LAYER END-->
-        <br>
-        <br>
-        <br>
-        <br>
+      <br>
+        <form action="filler_link.php" id="form">
+            <div class="newsletter-container">
+                  <h2>Subscribe to my Newsletter for updates and new projects!</h2>
+                <input type ="text" placeholder="Name*" name="name" id="Newsletter-Subscription" required>
+                                <input type ="text" placeholder="Email Address*" name="mail" required>
+                                <label>
+                                <input type ="checkbox" name="Subscribe" id="newsletter-subscribe-check">
+                                By clicking this box, you agree to sign up for my newsletter to receive updates, project highlights, and tech insights. Your information will only be used for this newsletter and will never be shared or used for any other purpose.
+                                For more information, check out the privacy policy.
+                                </label>
+            </div>
+            <div class="container">
+                <input type ="submit" value="Subscribe">
+            </div>
+        </form>
+       
         </div>
     </div>
 </div>
@@ -78,6 +87,12 @@
                 <div class="text">Business inquiries or other contact</div>
                 <p>For professional business inquiries or if you need to get in contact with me, please leave your first name, last name, email address, and a message down below.
             Please make sure your subject has your name and summarizes your reason for contacting.</p>
+            <br>
+            <p>I’m always open to connecting with others who share a passion for technology, innovation, and continuous learning. 
+                Whether you’re reaching out about a potential project, a tech-related opportunity, or just want to network and exchange ideas, 
+                I’d love to hear from you. Let’s build something meaningful together! If you would like to sign up for my newsletter and future
+                updates on my projects, please sign up below.
+            </p>
                 <div class="icons">
                     <div class="row">
                         <i class="fas fa-user"></i>
@@ -117,6 +132,7 @@
                         <button type="submit">Send Message</button>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     </div>
