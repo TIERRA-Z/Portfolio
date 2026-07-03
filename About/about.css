@@ -252,9 +252,14 @@ section .title::before{
 }
 
 .home .home-content .text-1{
-    font-size: 27px;
+  font-size: 9.6875rem; /* 75px */
+    text-shadow: 7px 8px 6px rgba(54,57,70,0.69);  
+
 }
-.home .home-content .text-2{
+
+  
+  
+/* .home .home-content .text-2{
     font-size: 75px;
     font-weight: 600;
     margin-left: -3px;
@@ -262,7 +267,7 @@ section .title::before{
 .home .home-content .text-3{
     font-size: 40px;
     margin: 5px 0;
-}
+} */
 
 .home .home-content a{
     display: inline-block;
@@ -695,12 +700,15 @@ footer{
     }
 }
 @media (max-width: 500px) {
-    .home .home-content .text-2{
+    .home .home-content .text-1{
+        font-size: 5.6875rem; /* 75px */
+    }
+    /* .home .home-content .text-2{
         font-size: 50px;
-    }
-    .home .home-content .text-3{
+    } */
+    /* .home .home-content .text-3{
         font-size: 27px;
-    }
+    } */
     .about .about-content .right .text,
     .projects .projects-content .left .text{
         font-size: 19px;
