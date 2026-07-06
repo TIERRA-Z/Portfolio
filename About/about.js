@@ -51,12 +51,14 @@ toggle.addEventListener('input', e => {
 
   const images = ['aboutmemainpic.jpg', 'esportsgroupphoto.jpg', 'awards.jpg', 'SHPromiseClubPhoto.png'];
   const aboutSection = document.querySelector('.home');
+  const homeBg = document.querySelector('.home-bg');
   const dotsContainer = document.getElementById('dots-container');
    const prevBtn = document.getElementById('prev');
   const nextBtn = document.getElementById('next');
 
   let currentIndex = 0;
   let intervalId;
+  let fadeTimeout;
 
 
   images.forEach((_, i) => {
@@ -74,9 +76,21 @@ toggle.addEventListener('input', e => {
 
   function showSlide(index) {
     currentIndex = index;
-    aboutSection.style.backgroundImage = `url(${images[currentIndex]})`;
     dots.forEach(dot => dot.classList.remove('active'));
     dots[currentIndex].classList.add('active');
+
+    if (!homeBg.classList.contains('visible')) {
+      homeBg.style.backgroundImage = `url(${images[currentIndex]})`;
+      homeBg.classList.add('visible');
+      return;
+    }
+
+    homeBg.classList.remove('visible');
+    clearTimeout(fadeTimeout);
+    fadeTimeout = setTimeout(() => {
+      homeBg.style.backgroundImage = `url(${images[currentIndex]})`;
+      homeBg.classList.add('visible');
+    }, 250);
   }
 
  function nextSlide() {

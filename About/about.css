@@ -183,12 +183,25 @@ section .title::before{
   height: 100vh;
   color: #FAF9F6;
   font-family: 'Ubuntu', sans-serif;
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  background-color: #121212;
+}
+
+.home-bg {
+  position: absolute;
+  inset: 0;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  transition: background-image 1s ease-in-out;
-  position: relative;
+  background-color: #121212;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 0;
+}
+
+.home-bg.visible {
+  opacity: 1;
 }
 
 .home .max-width {
@@ -196,6 +209,8 @@ section .title::before{
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 /* Dots below */
@@ -255,6 +270,11 @@ section .title::before{
   font-size: 9.6875rem; /* 75px */
     text-shadow: 7px 8px 6px rgba(54,57,70,0.69);  
 
+}
+
+body.dark-theme .home .home-content .text-1 {
+  color: #AD7E4B;
+  text-shadow: 7px 8px 6px rgba(22, 22, 22, 0.65);
 }
 
   
