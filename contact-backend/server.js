@@ -44,12 +44,25 @@ const contactLimiter = rateLimit({
 // ---- Mail transporter ----
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.SMTP_EMAIL,
-    pass: process.env.SMTP_APP_PASSWORD,
-  },
-});
+     host: '172.217.204.108', // smtp.gmail.com
+     port: 465,
+     secure: true,
+     tls: {
+        servername: 'smtp.gmail.com',
+        dns.resolve4('smtp.gmail.com', (err, addresses) => {
+          if (err) {
+            console.error('DNS resolution error:', err);
+          } else {
+            console.log('Resolved addresses for smtp.gmail.com:', addresses);
+          }
+        }),
+     },
+     auth: {
+       user: process.env.SMTP_EMAIL,
+       pass: process.env.SMTP_APP_PASSWORD,
+     },
+     family: 4,
+   });
 
 // ---- Helpers ----
 
