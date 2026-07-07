@@ -3,14 +3,13 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.set('trust proxy', 1);
 
-// ---- Basic setup ----
-
-app.use(express.json({ limit: '10kb' })); // small limit, this is just a contact form
+app.use(express.json({ limit: '10kb' }));
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
@@ -20,7 +19,6 @@ const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
 app.use(
   cors({
     origin: (origin, callback) => {
-      // allow tools like curl/postman (no origin) and any explicitly allowed origin
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
@@ -30,44 +28,17 @@ app.use(
   })
 );
 
-// ---- Spam prevention: rate limiting ----
-// Caps how many submissions a single IP can make in a time window.
-
 const contactLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 3, // 3 submissions per IP per window
+  windowMs: 15 * 60 * 1000,
+  max: 3,
   message: { error: 'Too many messages sent. Please try again later.' },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
-// ---- Mail transporter ----
-
-const transporter = nodemailer.createTransport({
-     host: '172.217.204.108', // smtp.gmail.com
-     port: 465,
-     secure: true,
-     tls: {
-        servername: 'smtp.gmail.com',
-        dns.resolve4('smtp.gmail.com', (err, addresses) => {
-          if (err) {
-            console.error('DNS resolution error:', err);
-          } else {
-            console.log('Resolved addresses for smtp.gmail.com:', addresses);
-          }
-        }),
-     },
-     auth: {
-       user: process.env.SMTP_EMAIL,
-       pass: process.env.SMTP_APP_PASSWORD,
-     },
-     family: 4,
-   });
-
-// ---- Helpers ----
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 function isValidEmail(email) {
-  // simple, good-enough email shape check (not exhaustive RFC 5322)
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
@@ -80,23 +51,18 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
-// ---- Route ----
-
 app.post('/api/contact', contactLimiter, async (req, res) => {
   const { name, email, subject, message, mood, website } = req.body || {};
 
-  // Honeypot check: "website" field is invisible to real users.
-  // If it's filled in, a bot did it — pretend success, don't send anything.
   if (website) {
     return res.status(200).json({ ok: true });
   }
 
-  // Server-side validation (never trust the client)
   if (!email || !subject || !message) {
     return res.status(400).json({ error: 'Missing required fields.' });
   }
   if (!isValidEmail(email)) {
-    return res.status(400).json({ error: 'That email address doesn\'t look valid.' });
+    return res.status(400).json({ error: "That email address doesn't look valid." });
   }
   if (subject.length > 150 || message.length > 3000) {
     return res.status(400).json({ error: 'Subject or message is too long.' });
@@ -109,10 +75,10 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br>');
 
   try {
-    await transporter.sendMail({
-      from: `"Portfolio Contact Form" <${process.env.SMTP_EMAIL}>`,
+    const { error } = await resend.emails.send({
+      from: 'Portfolio Contact Form <onboarding@resend.dev>',
       to: process.env.TO_EMAIL,
-      replyTo: email,
+      reply_to: email,
       subject: `${moodTag}New message: ${subject}`,
       html: `
         <p><strong>${safeName}</strong> (${safeEmail}) sent you a message${mood ? ` feeling <strong>${escapeHtml(mood)}</strong>` : ''}:</p>
@@ -120,6 +86,11 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
         <p>${safeMessage}</p>
       `,
     });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(500).json({ error: 'Something went wrong sending your message. Please try again shortly.' });
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {

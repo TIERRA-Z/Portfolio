@@ -185,9 +185,9 @@ img.myLogo{
 .home{
     display: flex;
     background: url("shiny-ge022d475c_1920.jpg") no-repeat center;
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 100px;
     color: #FAF9F6; /*Welcome, my name is Text Color*/
-    min-height: 500px;
     font-family: 'Ubuntu', sans-serif;
     background-size: cover;
     background-attachment: fixed;
@@ -195,7 +195,26 @@ img.myLogo{
 .home .max-width{
     width: 100%;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
   }
+.home .home-content {
+    max-width: 700px;
+    width: 100%;
+    min-width: 0;
+    padding-top: 40px;
+}
+.home #myLogo,
+img#myLogo {
+    max-width: 320px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    float: none !important;
+}
 .home .max-width .row{
     margin-right: 0;
   }
@@ -219,6 +238,27 @@ img.myLogo{
 .home .home-content a:hover{
     color: #FED049;
     background: none;
+}
+
+@media (max-width: 690px) {
+    .home .max-width {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    img#myLogo {
+        max-width: 260px;
+        margin-top: 30px;
+    }
+    .home {
+        background-attachment: scroll;
+    }
+}
+
+@media (max-width: 500px) {
+    img#myLogo {
+        max-width: 220px;
+        margin-top: 25px;
+    }
 }
 
 hr{
@@ -429,9 +469,10 @@ body.dark-theme .about{
     width: 45%;
 }
 .about .about-content .left img{
-    height: 500px;
-    width: 400px;
-    object-fit: cover;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    object-fit: contain;
     border-radius: 6px;
 }
 .about .about-content .right{
@@ -633,8 +674,9 @@ footer{
 
 @media (max-width: 1104px) {
     .about .about-content .left img{
-        height: 350px;
-        width: 350px;
+        max-width: 360px;
+        height: auto;
+        width: 100%;
     }
 }
 @media (max-width: 991px) {
@@ -719,6 +761,14 @@ footer{
     .home .home-content a{
         font-size: 20px;
     }
+    .home .max-width {
+        justify-content: center;
+    }
+    .home #myLogo,
+    img#myLogo {
+        max-width: 220px;
+        margin-top: 30px;
+    }
     .resume .serv-content .card{
         width: 100%;
     }
@@ -729,6 +779,11 @@ footer{
     }
     .home .home-content .text-3{
         font-size: 27px;
+    }
+    .home #myLogo,
+    img#myLogo {
+        max-width: 180px;
+        margin-top: 25px;
     }
     .about .about-content .right .text,
     .projects .projects-content .left .text{
